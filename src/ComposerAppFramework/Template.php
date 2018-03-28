@@ -50,7 +50,7 @@ class Template
     public function renderTemplate($controller, $routing){
         $directory = $this->getTemplatePath();
         $classname = $routing->getClassName();
-        $path = str_replace("\\","/",substr($classname, 18));
+        $path = str_replace("\\","/",substr($classname, 29));
         $file = $directory.$path."/".$routing->getActionName().".phtml";
         if(file_exists($file)){
             $block = new Block($this->app, $file, $controller->getValues());

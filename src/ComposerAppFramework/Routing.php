@@ -116,7 +116,7 @@ class Routing{
     }
 
     private function generateControllerClass(){
-        $class = "Staempfli\\Voucher\\";
+        $class = "Staempfli\\Voucher\\Controller\\";
         $structur = $this->pathInformation['structur'];
         foreach ($structur as $level){
             $class .= $level."\\";
