@@ -1,6 +1,6 @@
 <?php
 
-namespace Staempfli\Voucher\Library;
+namespace ComposerAppFramework;
 
 class Plugin{
 

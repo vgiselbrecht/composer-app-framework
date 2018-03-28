@@ -6,17 +6,17 @@
  * @author    valentin.giselbrecht@staempfli.at
  */
  
-namespace Staempfli\Voucher\Library;
+namespace ComposerAppFramework;
 
 class Load
 {
     /** @var App */
     var $app = null;
 
-    public function __construct($config, $plugins = [], $min = false)
+    public function __construct($config, $plugins = [], $min = false, $composer_app_path = null)
     {
         session_start();
-        $this->app = new App($config);
+        $this->app = new App($config, $composer_app_path);
         $this->loadRequest();
         $this->loadAssets();
         $this->loadDB();

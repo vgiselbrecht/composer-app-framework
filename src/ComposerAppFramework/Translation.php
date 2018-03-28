@@ -6,7 +6,7 @@
  * @author    valentin.giselbrecht@staempfli.at
  */
 
-namespace Staempfli\Voucher\Library;
+namespace ComposerAppFramework;
 
 
 class Translation
@@ -39,7 +39,7 @@ class Translation
 
     public function loadTranslation($lang){
         $ret = [];
-        $file = realpath(dirname(__FILE__))."/../Resources/Private/i18n/".$lang.".csv";
+        $file = $this->app->getComposerAppPath()."/Resources/Private/i18n/".$lang.".csv";
         if(file_exists($file)){
             if (($handle = fopen($file, "r")) !== FALSE) {
                 while (($data = fgetcsv($handle, 1000, ",")) !== FALSE) {

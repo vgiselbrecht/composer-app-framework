@@ -6,7 +6,7 @@
  * @author    valentin.giselbrecht@staempfli.at
  */
 
-namespace Staempfli\Voucher\Library;
+namespace ComposerAppFramework;
 
 
 class Logger

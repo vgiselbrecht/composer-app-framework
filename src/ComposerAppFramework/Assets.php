@@ -6,7 +6,7 @@
  * @author    valentin.giselbrecht@staempfli.at
  */
 
-namespace Staempfli\Voucher\Library;
+namespace ComposerAppFramework;
 
 
 class Assets
@@ -21,7 +21,7 @@ class Assets
     
     public function loadAsset(){
         $path = $this->app->getRequest()->getPath();
-        $file  = realpath(dirname(__FILE__))."/../Resources/Public/".implode("/",$path);
+        $file  = $this->app->getComposerAppPath()."/Resources/Public/".implode("/",$path);
         if(isset($path[0]) && $path[0] == "assets"){
             if(file_exists($file)){
                 header($this->getContentType($file));

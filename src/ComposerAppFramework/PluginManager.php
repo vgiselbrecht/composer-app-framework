@@ -1,15 +1,15 @@
 <?php
 
-namespace Staempfli\Voucher\Library;
+namespace ComposerAppFramework;
 
-use Staempfli\Voucher\Library\Singelton;
+use ComposerAppFramework\Singelton;
 
 class PluginManager extends Singelton{
 
     var $plugins = [];
 
     public function addPlugin($plugin){
-        if(is_subclass_of($plugin, "Staempfli\\Voucher\\Library\\Plugin")){
+        if(is_subclass_of($plugin, "ComposerAppFramework\\Plugin")){
             $plugin->app = $this->app;
             $this->plugins[$plugin->getName()] = $plugin;
         }

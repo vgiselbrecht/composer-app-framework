@@ -1,14 +1,16 @@
 <?php
 
-namespace Staempfli\Voucher\Library;
+namespace ComposerAppFramework;
 
 class App{
+
+    var $config = [];
+    var $composer_app_path = null;
 
     /** @var Helper */
     var $helper = null;
     /** @var Logger */
     var $logger = null;
-    var $config = [];
     /** @var Database */
     var $db = null;
     /** @var Request */
@@ -30,7 +32,7 @@ class App{
     /** @var PluginManager */
     var $plugin_manager = null;
 
-    public function __construct($config)
+    public function __construct($config, $composer_app_path = null)
     {
         $this->helper = new Helper();
         $this->logger = new Logger($config, $this->helper);
@@ -39,6 +41,7 @@ class App{
         $this->template = new Template($this);
         $this->session = new Session($this);
         $this->config = $config;
+        $this->composer_app_path = $composer_app_path;
     }
 
     /**
@@ -207,6 +210,22 @@ class App{
     public function setPluginManager($plugin_manager)
     {
         $this->plugin_manager = $plugin_manager;
+    }
+
+    /**
+     * @return null
+     */
+    public function getComposerAppPath()
+    {
+        return $this->composer_app_path;
+    }
+
+    /**
+     * @param null $composer_app_path
+     */
+    public function setComposerAppPath($composer_app_path)
+    {
+        $this->composer_app_path = $composer_app_path;
     }
 
 }

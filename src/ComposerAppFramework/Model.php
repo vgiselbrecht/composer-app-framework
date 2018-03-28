@@ -6,7 +6,7 @@
  * @author    valentin.giselbrecht@staempfli.at
  */
 
-namespace Staempfli\Voucher\Library;
+namespace ComposerAppFramework;
 
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
@@ -24,7 +24,7 @@ class Model
     {
         $this->app = $app;
         $isDevMode = true;
-        $config = Setup::createAnnotationMetadataConfiguration(array(realpath(dirname(__FILE__))."/../Model"), $isDevMode);
+        $config = Setup::createAnnotationMetadataConfiguration(array($this->app->getComposerAppPath()."/Model"), $isDevMode);
         $this->entityManager = EntityManager::create($this->app->getDB()->getDoctrinParameters(), $config);
     }
 
@@ -44,7 +44,7 @@ class Model
 
     public function getSingelton($name){
         if(!isset($singeltons[$name])){
-            if(is_subclass_of($name, "Staempfli\\Voucher\\Library\\Singelton")) {
+            if(is_subclass_of($name, "ComposerAppFramework\\Singelton")) {
                 $singeltons[$name] = new $name($this->app);
             }
         }

@@ -6,7 +6,7 @@
  * @author    valentin.giselbrecht@staempfli.at
  */
 
-namespace Staempfli\Voucher\Library;
+namespace ComposerAppFramework;
 
 
 class Dispatcher
@@ -29,7 +29,7 @@ class Dispatcher
             return false;
         }
         $controller = new $classname($this->app, $routing->getArguments());
-        if(!is_subclass_of($controller, "Staempfli\\Voucher\\Library\\Controller")){
+        if(!is_subclass_of($controller, "ComposerAppFramework\\Controller")){
             $this->app->getLogger()->log("Controller with Name $classname must have controller as parent", $this->app->getLogger()::ERROR);
             return false;
         }

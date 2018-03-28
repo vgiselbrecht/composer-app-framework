@@ -1,6 +1,6 @@
 <?php
 
-namespace Staempfli\Voucher\Library;
+namespace ComposerAppFramework;
 
 class Routing{
 
@@ -69,7 +69,7 @@ class Routing{
         if(!$path){
             return $this->setPathInformation([], "Index", "index", []);
         }
-        $directory = realpath(dirname(__FILE__))."/../Controller/";
+        $directory = $this->app->getComposerAppPath()."/Controller/";
         $structur = [];
         foreach ($path as $key => $folder){
             unset($path[$key]);

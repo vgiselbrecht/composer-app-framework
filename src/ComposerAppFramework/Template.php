@@ -6,7 +6,7 @@
  * @author    valentin.giselbrecht@staempfli.at
  */
 
-namespace Staempfli\Voucher\Library;
+namespace ComposerAppFramework;
 
 
 class Template
@@ -71,11 +71,11 @@ class Template
     }
 
     public function getTemplatePath(){
-        return realpath(dirname(__FILE__))."/../Resources/Private/Template/";
+        return $this->app->getComposerAppPath()."/Resources/Private/Template/";
     }
 
     public function getPartialPath(){
-        return realpath(dirname(__FILE__))."/../Resources/Private/Partials/";
+        return $this->app->getComposerAppPath()."/Resources/Private/Partials/";
     }
 
 }

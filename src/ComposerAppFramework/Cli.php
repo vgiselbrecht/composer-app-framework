@@ -1,6 +1,6 @@
 <?php
 
-namespace Staempfli\Voucher\Library;
+namespace ComposerAppFramework;
 
 
 class Cli
@@ -21,7 +21,7 @@ class Cli
         $declaredClasses = $this->declareCommandClasses();
         $declaredClasses = get_declared_classes();
         foreach($declaredClasses as $class){
-            if(is_subclass_of($class, "Staempfli\Voucher\Library\Command")) {
+            if(is_subclass_of($class, "ComposerAppFramework\Command")) {
                 $classes[] = $class;
             }
         }
@@ -77,7 +77,7 @@ class Cli
     }
 
     private function declareCommandClasses(){
-        $files = glob( realpath(dirname(__FILE__)). '/../Command/*.php');
+        $files = glob( $this->app->getComposerAppPath(). '/Command/*.php');
         foreach ($files as $file){
             include_once $file;
         }
