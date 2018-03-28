@@ -1,0 +1,23 @@
+{
+  "name": "vgiselbrecht/composer-app-framework",
+  "type": "library",
+  "description": "Framework to create web app as composer project to include in main project.",
+  "keywords": ["composer","framework","webapp","orm"],
+  "homepage": "http://www.gise.at",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Valentin Giselbrecht",
+      "email": "vgiselbrecht@hotmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=5.6.0",
+    "doctrine/orm": "^2.4"
+  },
+  "autoload": {
+    "psr-4": {
+      "ComposerAppFramework\\": "src/ComposerAppFramework"
+    }
+  }
+}
