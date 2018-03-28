@@ -48,8 +48,24 @@ class Cli
             unset($argv[1]);
             $parameters = $this->getParameters($argv);
             $arguments = $this->getArguments($command, $argv);
-            echo $command->call($arguments, $parameters);
+            if($this->validArguments($command, $arguments)){
+                echo $command->call($arguments, $parameters);
+            }
+        }else if(!isset($argv[1]) ||  $argv[1] == 'list:'){
+            echo $this->getList();
+        }else{
+            echo 'Command not found, call "list" to show all functions!';
         }
+    }
+
+    private function getList(){
+        $ret = "";
+        $ret .= "Command list\n";
+        $ret .= "---------------------------------------\n";
+        foreach ($this->commands as $command){
+            $ret .= $command->getInfo(false);
+        }
+        return $ret;
     }
 
     /**
@@ -60,8 +76,8 @@ class Cli
     private function getParameters(&$argv){
         $parameters = [];
         foreach ($argv as $key => $parameter){
-            if(substr($parameter, 0, 1) == '--'){
-                $identifier = substr($parts[0], 2);
+            if(substr($parameter, 0, 2) == '--'){
+                $identifier = substr($parameter, 2);
                 $parameters[$identifier] = true;
                 unset($argv[$key]);
             } else if(substr($parameter, 0, 1) == '-' &&
@@ -92,6 +108,22 @@ class Cli
             }
         }
         return $arguments;
+    }
+
+    /**
+     * valid arguments
+     * @param $command
+     * @param $arguments
+     */
+    private function validArguments($command, $arguments){
+        $commandArguments = $command->getArguments();
+        if(count($arguments) != count($commandArguments)){
+            echo "Missing arguments\n";
+            echo $command->getInfo();
+            return false;
+        }
+
+        return true;
     }
 
     /**

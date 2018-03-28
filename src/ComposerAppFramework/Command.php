@@ -83,4 +83,18 @@ class Command
         return $this->arguments;
     }
 
+    /**
+     * return info about the comment
+     * @param bool $full if true than it return the call stack
+     * @return string
+     */
+    public function getInfo($full = true){
+        $ret = $this->getName()." - ".$this->getDescription()."\n";
+        if($full) {
+            $ret .= "Call: " . $this->getName() . " " . implode(" ", $this->getArguments()) . "\n";
+        }
+        return $ret;
+
+    }
+
 }
