@@ -20,6 +20,12 @@ class Template
         $this->app = $app;
     }
 
+    /**
+     * render a full page template
+     * @param $controller
+     * @param $routing
+     * @return string
+     */
     public function renderFullPage($controller, $routing){
         if($controller && $routing){
             $this->requestAction = $this->loadAction($controller, $routing);
@@ -28,15 +34,31 @@ class Template
         return $content;
     }
 
+    /**
+     * render a in page controller
+     * @param $controller
+     * @param $routing
+     * @return string
+     */
     public function renderController($controller, $routing){
         $content =  $this->loadAction($controller, $routing);
         return $content;
     }
 
+    /**
+     * get the content of the full page controller
+     * @return string
+     */
     public function loadRequestAction(){
         return $this->requestAction;
     }
-    
+
+    /**
+     * call a action and return the action content
+     * @param $controller
+     * @param $routing
+     * @return string
+     */
     private function loadAction($controller, $routing){
         $actionname = $routing->getActionName();
         $actionname .= "Action";
@@ -47,6 +69,12 @@ class Template
         return $this->renderTemplate($controller, $routing);
     }
 
+    /**
+     * render a template file from a action
+     * @param $controller
+     * @param $routing
+     * @return string
+     */
     public function renderTemplate($controller, $routing){
         $directory = $this->getTemplatePath();
         $classname = $routing->getClassName();
@@ -60,6 +88,12 @@ class Template
         }
     }
 
+    /**
+     * render a partial file
+     * @param $file
+     * @param array $values
+     * @return string
+     */
     public function renderPartials($file, $values = []){
         $file =  $directory = $this->getPartialPath().$file.".phtml";
         if(file_exists($file)){

@@ -26,6 +26,10 @@ class Database
         }
     }
 
+    /**
+     * return db config in doctrin format
+     * @return mixed
+     */
     public function getDoctrinParameters(){
         $connectionParams['driver'] = 'pdo_mysql';
         if(isset($this->config['database'])){
@@ -43,6 +47,10 @@ class Database
         return $connectionParams;
     }
 
+    /**
+     * return a mysqli db connection
+     * @return \mysqli|null
+     */
     public function getMysqliConnection(){
         if(!$this->mysqli){
             $this->mysqli = mysqli_connect(

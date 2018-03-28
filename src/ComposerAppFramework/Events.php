@@ -20,6 +20,11 @@ class Events
         $this->app = $app;
     }
 
+    /**
+     * call all registerd methods from given event
+     * @param $eventname
+     * @param null $data
+     */
     public function triggerEvent($eventname, &$data = null){
         if(isset($this->events[$eventname])){
             $listeners = $this->orderByPositon($this->events[$eventname]);
@@ -33,6 +38,12 @@ class Events
         }
     }
 
+    /**
+     * add function for event
+     * @param $eventname
+     * @param $function
+     * @param int $position
+     */
     public function registerListener($eventname, $function, $position = 0){
         $this->events[$eventname][] = ['function' => $function, 'position' => $position];
     }

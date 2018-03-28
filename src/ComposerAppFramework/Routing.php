@@ -19,12 +19,21 @@ class Routing{
         $this->app = $app;
     }
 
+    /**
+     * add fullpage routing
+     * @param $request
+     */
     public function initRequestRouting($request){
         $this->request = $request;
         $this->fullPage = true;
         $this->loadRouting($this->request->getPath());
     }
 
+    /**
+     * add in app routing
+     * @param $path
+     * @return bool
+     */
     public function initInlineRouting($path){
         if(!is_array($path)){
             $path = explode("/",$path);
@@ -43,6 +52,10 @@ class Routing{
         return true;
     }
 
+    /**
+     * get routing from path
+     * @param $path
+     */
     private function loadRouting($path){
         $this->loadPathInformation($path);
         if(!$this->pathInformation){
@@ -64,7 +77,12 @@ class Routing{
     public function getArguments(){
         return $this->arguments;
     }
-    
+
+    /**
+     * get all infos from path
+     * @param $path
+     * @return bool|void
+     */
     private function loadPathInformation($path){
         if(!$path){
             return $this->setPathInformation([], "Index", "index", []);
@@ -99,6 +117,13 @@ class Routing{
         return false;
     }
 
+    /**
+     * set path information
+     * @param $structur
+     * @param $file
+     * @param $action
+     * @param $arguments
+     */
     private function setPathInformation($structur, $file, $action, $arguments){
         $this->pathInformation['structur'] = $structur;
         $this->pathInformation['file'] = $file;
@@ -115,6 +140,10 @@ class Routing{
         $this->pathInformation['arguments'] = $argumentsKeyValue;
     }
 
+    /**
+     * get controller class name
+     * @return string
+     */
     private function generateControllerClass(){
         $class = "Staempfli\\Voucher\\Controller\\";
         $structur = $this->pathInformation['structur'];

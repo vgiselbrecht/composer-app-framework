@@ -25,6 +25,11 @@ class Translation
         }
     }
 
+    /**
+     * get a tranlastion for given values
+     * @param $args
+     * @return string
+     */
     public function getTranslation($args){
         $key = array_shift($args);
         if(!isset($this->translations[$this->lang])){
@@ -37,6 +42,11 @@ class Translation
         return vsprintf($key, $args);
     }
 
+    /**
+     * load translation file
+     * @param $lang
+     * @return array
+     */
     public function loadTranslation($lang){
         $ret = [];
         $file = $this->app->getComposerAppPath()."/Resources/Private/i18n/".$lang.".csv";

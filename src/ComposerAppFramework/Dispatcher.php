@@ -19,6 +19,12 @@ class Dispatcher
         $this->app = $app;
     }
 
+    /**
+     * call a controller for given routing
+     * works for fulpage in inpage controller
+     * @param Routing $routing
+     * @return bool|string
+     */
     public function handle(Routing $routing){
         $classname = $routing->getClassName();
         $classname .= "Controller";

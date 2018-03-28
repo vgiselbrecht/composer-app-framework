@@ -28,20 +28,39 @@ class Model
         $this->entityManager = EntityManager::create($this->app->getDB()->getDoctrinParameters(), $config);
     }
 
+    /**
+     * save a model in db
+     * @param $entity
+     */
     public function saveModel($entity){
         $this->entityManager->persist($entity);
         $this->entityManager->flush();
     }
 
+    /**
+     * get a repository
+     * @param $name repository path
+     * @return \Doctrine\ORM\EntityRepository
+     */
     public function getRepository($name){
         return $this->entityManager->getRepository($name);
     }
 
+    /**
+     * delete a model from db
+     * @param $entity
+     */
     public function deleteModel($entity){
         $this->entityManager->remove($entity);
         $this->entityManager->flush();
     }
 
+    /**
+     * get singelton model
+     * @param $name modelname
+     * @return mixed
+     * @throws \Exception
+     */
     public function getSingelton($name){
         if(!isset($singeltons[$name])){
             if(is_subclass_of($name, "ComposerAppFramework\\Singelton")) {
@@ -54,6 +73,10 @@ class Model
         return $singeltons[$name];
     }
 
+    /**
+     * get the doctrin entity manager
+     * @return EntityManager|null
+     */
     public function getEntityManager(){
         return $this->entityManager;
     }

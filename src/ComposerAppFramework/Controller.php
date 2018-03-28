@@ -26,6 +26,10 @@ class Controller
         $this->init();
     }
 
+    /**
+     * set this controller add full page controller
+     * a page can have always one fullpage controller
+     */
     public function setFullPage(){
         $this->fullPage = true;
         $this->app->getEvents()->registerListener("change_page_title", array($this, 'getPageTitle'));
@@ -46,6 +50,11 @@ class Controller
         return null;
     }
 
+    /**
+     * assign a value to receiv in template
+     * @param $key
+     * @param $value
+     */
     public function assign($key, $value){
         $this->values[$key] = $value;
     }
@@ -54,12 +63,10 @@ class Controller
         return $this->values;
     }
 
-    public function getPageTitle(&$pagetitle){
-        if($this->pagetitle){
-            $pagetitle = $this->pagetitle." - ".$pagetitle;
-        }
-    }
-
+    /**
+     * redirect to given path
+     * @param $path
+     */
     public function redirect($path){
         $root = "";
         if(isset($this->app->getConfig()['root'])){
@@ -67,6 +74,12 @@ class Controller
         }
         header('Location: '.$root.$path);
         exit();
+    }
+
+    public function getPageTitle(&$pagetitle){
+        if($this->pagetitle){
+            $pagetitle = $this->pagetitle." - ".$pagetitle;
+        }
     }
 
     public function setPageTitle($pagetitle){
@@ -86,11 +99,20 @@ class Controller
         return $pagetitle;
     }
 
+    /**
+     * tranlaste values
+     * @return string
+     */
     public function __(){
         $args = func_get_args();
         return $this->app->getTranslation()->getTranslation($args);
     }
 
+    /**
+     * load other controller
+     * @param $path
+     * @return bool|string
+     */
     public function loadController($path){
         $routing = new Routing($this->app);
         if($routing->initInlineRouting($path)){
@@ -101,18 +123,35 @@ class Controller
         }
     }
 
+    /**
+     * add success message
+     * @param $msg
+     */
     public function addSuccess($msg){
         $this->app->getSession()->setAlert($msg,$this->app->getSession()::SUCCESS);
     }
 
+    /**
+     * add error message
+     * @param $msg
+     */
     public function addError($msg){
         $this->app->getSession()->setAlert($msg,$this->app->getSession()::ERROR);
     }
 
+    /**
+     * add notice
+     * @param $msg
+     */
     public function addNotice($msg){
         $this->app->getSession()->setAlert($msg,$this->app->getSession()::NOTICE);
     }
 
+    /**
+     * get a post value
+     * @param $key
+     * @return mixed
+     */
     public function getPostValue($key){
         $post = $this->app->getRequest()->getPost();
         if(isset($post[$key])){
@@ -124,6 +163,10 @@ class Controller
         return $this->notFullPage;
     }
 
+    /**
+     * add http header
+     * @param $header
+     */
     public function setHeader($header){
         header($header);
     }

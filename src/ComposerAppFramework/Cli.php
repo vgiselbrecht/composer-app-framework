@@ -15,7 +15,11 @@ class Cli
         $this->commands = $this->getAllCommands();
         $this->handleCliRequest();
     }
-    
+
+    /**
+     * return list of all comments
+     * @return array
+     */
     private function getAllCommands(){
         $classes  = array();
         $declaredClasses = $this->declareCommandClasses();
@@ -33,6 +37,9 @@ class Cli
         return $commands;
     }
 
+    /**
+     * handle a clie request
+     */
     private function handleCliRequest(){
         $argv = $_SERVER['argv'];
         if(isset($argv[1]) && isset($this->commands[$argv[1]])){
@@ -45,6 +52,11 @@ class Cli
         }
     }
 
+    /**
+     * get cli paremeters
+     * @param $argv
+     * @return array
+     */
     private function getParameters(&$argv){
         $parameters = [];
         foreach ($argv as $key => $parameter){
@@ -64,6 +76,12 @@ class Cli
         return $parameters;
     }
 
+    /**
+     * get cli parameters
+     * @param $command
+     * @param $argv
+     * @return array
+     */
     private function getArguments($command, &$argv){
         $arguments = [];
         $commandArguments = $command->getArguments();
@@ -76,6 +94,9 @@ class Cli
         return $arguments;
     }
 
+    /**
+     * include all cli classes
+     */
     private function declareCommandClasses(){
         $files = glob( $this->app->getComposerAppPath(). '/Command/*.php');
         foreach ($files as $file){

@@ -39,7 +39,11 @@ class Request
         return null;
     }
 
-    
+    /**
+     * get all path parts from url
+     * @param $config
+     * @return bool
+     */
     private function handlePath($config){
         if(!isset($_SERVER["REQUEST_URI"])){
             return false;

@@ -24,6 +24,11 @@ class Logger
         $this->helper = $helper;
     }
 
+    /**
+     * log in logfile
+     * @param $message
+     * @param string $level
+     */
     public function log($message, $level = self::NOTICE){
         $message = date("Y-m-d H:i:s").": ".$message."\n";
         $file = $this->helper->getIndexPath()."var/log/".$level.".txt";

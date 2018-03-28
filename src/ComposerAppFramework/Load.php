@@ -49,6 +49,10 @@ class Load
         }
     }
 
+    /**
+     * call fulpage request
+     * returns content drom fullpage controller
+     */
     private function handleRequest(){
         $routing = new Routing($this->app);
         $routing->initRequestRouting($this->app->getRequest());

@@ -24,30 +24,58 @@ class Session
         $this->app = $app;
     }
 
+    /**
+     * set session data
+     * @param $key
+     * @param $value
+     */
     public function setSessionData($key, $value){
         $_SESSION['voucher'][$key] = $value;
     }
 
+    /**
+     * get session data
+     * @param $key
+     * @return mixed
+     */
     public function getSessionData($key){
         if(isset($_SESSION['voucher'][$key] )){
             return $_SESSION['voucher'][$key];
         }
     }
 
+    /**
+     * function to remember user id
+     * @param $userId
+     */
     public function setUserId($userId){
         $this->setSessionData("user_id", $userId);
     }
 
+    /**
+     * function to get user id
+     * @return mixed
+     */
     public function getUserId(){
         return $this->getSessionData("user_id");
     }
 
+    /**
+     * save alert information
+     * @param $msg
+     * @param $type
+     */
     public function setAlert($msg, $type){
         $alerts = $this->getSessionData('alerts');
         $alerts[$type][] = $msg;
         $this->setSessionData('alerts', $alerts);
     }
 
+    /**
+     * get alert information
+     * @param null $type
+     * @return mixed
+     */
     public function getAlerts($type = null){
         $alerts = $this->getSessionData('alerts');
         if($type == null){
