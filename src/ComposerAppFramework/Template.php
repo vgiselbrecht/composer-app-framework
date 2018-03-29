@@ -81,7 +81,8 @@ class Template
         $path = str_replace("\\","/",substr($classname, 29));
         $file = $directory.$path."/".$routing->getActionName().".phtml";
         if(file_exists($file)){
-            $block = new Block($this->app, $file, $controller->getValues());
+            $blockClass = $this->getBlockClass();
+            $block = new $blockClass($this->app, $file, $controller->getValues());
             return $block->includeTemplate();
         }else{
             $this->app->getLogger()->log("Template File $file not exists!", $this->app->getLogger()::ERROR);
@@ -97,7 +98,8 @@ class Template
     public function renderPartials($file, $values = []){
         $file =  $directory = $this->getPartialPath().$file.".phtml";
         if(file_exists($file)){
-            $block = new Block($this->app, $file, $values);
+            $blockClass = $this->getBlockClass();
+            $block = new $blockClass($this->app, $file, $values);
             return $block->includeTemplate();
         }else{
             $this->app->getLogger()->log("Partial File $file not exists!", $this->app->getLogger()::ERROR);
@@ -110,6 +112,12 @@ class Template
 
     public function getPartialPath(){
         return $this->app->getComposerAppPath()."/Resources/Private/Partials/";
+    }
+
+    private function getBlockClass(){
+        $class = "\\ComposerAppFramework\\Block";
+
+        return $class;
     }
 
 }
