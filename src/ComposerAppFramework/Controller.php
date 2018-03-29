@@ -93,7 +93,7 @@ class Controller
             $pagetitle =  $config['pagetitle'];
         }
         if(!$pagetitle){
-            $pagetitle = "Stämpfli Voucher System";
+            $pagetitle = "Composer App Framework";
         }
         $this->app->getEvents()->triggerEvent("change_page_title", $pagetitle);
         return $pagetitle;

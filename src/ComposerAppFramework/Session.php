@@ -30,7 +30,7 @@ class Session
      * @param $value
      */
     public function setSessionData($key, $value){
-        $_SESSION['voucher'][$key] = $value;
+        $_SESSION[$this->app->config['appkey']][$key] = $value;
     }
 
     /**
@@ -39,8 +39,8 @@ class Session
      * @return mixed
      */
     public function getSessionData($key){
-        if(isset($_SESSION['voucher'][$key] )){
-            return $_SESSION['voucher'][$key];
+        if(isset($_SESSION[$this->app->config['appkey']][$key] )){
+            return $_SESSION[$this->app->config['appkey']][$key];
         }
     }
 

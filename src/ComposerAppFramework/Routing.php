@@ -145,7 +145,7 @@ class Routing{
      * @return string
      */
     private function generateControllerClass(){
-        $class = "Staempfli\\Voucher\\Controller\\";
+        $class = $this->app->config['namespace']."\\Controller\\";
         $structur = $this->pathInformation['structur'];
         foreach ($structur as $level){
             $class .= $level."\\";
