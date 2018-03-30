@@ -32,6 +32,9 @@ class Database
      */
     public function getDoctrinParameters(){
         $connectionParams['driver'] = 'pdo_mysql';
+        if(isset($this->config['driver'])){
+            $connectionParams['driver'] = $this->config['driver'];
+        }
         if(isset($this->config['database'])){
             $connectionParams['dbname'] = $this->config['database'];
         }
