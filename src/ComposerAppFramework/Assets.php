@@ -29,7 +29,7 @@ class Assets
             if(file_exists($file)){
                 header($this->getContentType($file));
                 header('Content-Disposition: inline; filename="'.basename($file).'"');
-                header('Expires: 0');
+                header("Expires: " . date("D, j M Y", strtotime("tomorrow")) . " 02:00:00 GMT");
                 header('Cache-Control: must-revalidate');
                 header('Pragma: public');
                 header('Content-Length: ' . filesize($file));
