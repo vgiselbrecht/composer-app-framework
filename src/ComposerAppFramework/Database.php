@@ -38,13 +38,13 @@ class Database
         if(isset($this->config['database'])){
             $connectionParams['dbname'] = $this->config['database'];
         }
-        if(isset($this->config['database'])){
+        if(isset($this->config['user'])){
             $connectionParams['user'] = $this->config['user'];
         }
-        if(isset($this->config['database'])){
+        if(isset($this->config['password'])){
             $connectionParams['password'] = $this->config['password'];
         }
-        if(isset($this->config['database'])){
+        if(isset($this->config['host'])){
             $connectionParams['host'] = $this->config['host'];
         }
         return $connectionParams;
